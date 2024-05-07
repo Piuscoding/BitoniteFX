@@ -1,0 +1,188 @@
+<script type="9ed8e2ca83b2bca33f15a91e-text/javascript">
+  var TxtRotate = function (el, toRotate, period) {
+      this.toRotate = toRotate;
+      this.el = el;
+      this.loopNum = 0;
+      this.period = parseInt(period, 100) || 1000;
+      this.txt = '';
+      this.tick();
+      this.isDeleting = false;
+  };
+
+  TxtRotate.prototype.tick = function () {
+      var i = this.loopNum % this.toRotate.length;
+      var fullTxt = this.toRotate[i];
+
+      if (this.isDeleting) {
+          this.txt = fullTxt.substring(0, this.txt.length - 1);
+      } else {
+          this.txt = fullTxt.substring(0, this.txt.length + 1);
+      }
+
+      this.el.innerHTML = '<span class="wrap">' + this.txt + '</span>';
+
+      var that = this;
+      var delta = 150 - Math.random() * 100;
+
+      if (this.isDeleting) {
+          delta /= 2;
+      }
+
+      if (!this.isDeleting && this.txt === fullTxt) {
+          delta = this.period;
+          this.isDeleting = true;
+      } else if (this.isDeleting && this.txt === '') {
+          this.isDeleting = false;
+          this.loopNum++;
+          delta = 1000;
+      }
+
+      setTimeout(function () {
+          that.tick();
+      }, delta);
+  };
+
+  window.onload = function () {
+      var elements = document.getElementsByClassName('txt-rotate');
+      for (var i = 0; i < elements.length; i++) {
+          var toRotate = elements[i].getAttribute('data-rotate');
+          var period = elements[i].getAttribute('data-period');
+          if (toRotate) {
+              new TxtRotate(elements[i], JSON.parse(toRotate), period);
+          }
+      }
+      // INJECT CSS
+      var css = document.createElement("style");
+      css.type = "text/css";
+      css.innerHTML = ".txt-rotate > .wrap { border-right: 0.08em solid #ffffff }";
+      document.body.appendChild(css);
+  };
+
+  var swiper = new Swiper(".productSteps", {
+      loop: true,
+      pagination: {
+          el: ".landingSteps-pagination",
+          clickable: true,
+      },
+      breakpoints: {
+          320: {
+              slidesPerView: 1.2,
+              spaceBetween: 30, noSwiping: false,
+          },
+          480: {
+              slidesPerView: 1.2,
+              spaceBetween: 30, noSwiping: false,
+          },
+          640: {
+              slidesPerView: 2.2,
+              spaceBetween: 30, noSwiping: false,
+          },
+          856: {
+              slidesPerView: 2.2,
+              spaceBetween: 30, noSwiping: false,
+          },
+          1024: {
+              slidesPerView: 3,
+              spaceBetween: 30, noSwiping: true,
+          },
+
+      }
+  });
+  var swiper = new Swiper(".landingSteps", {
+      loop: true,
+      pagination: {
+          el: ".landingSteps-pagination",
+          clickable: true,
+      },
+      breakpoints: {
+          320: {
+              slidesPerView: 1.2,
+              spaceBetween: 30, noSwiping: false,
+          },
+          480: {
+              slidesPerView: 1.2,
+              spaceBetween: 30, noSwiping: false,
+          },
+          640: {
+              slidesPerView: 2.2,
+              spaceBetween: 30, noSwiping: false,
+          },
+          856: {
+              slidesPerView: 2.2,
+              spaceBetween: 30, noSwiping: false,
+          },
+          1024: {
+              slidesPerView: 4,
+              spaceBetween: 30, noSwiping: true,
+          },
+
+      }
+  });
+
+</script>
+
+<div>
+<div class style="margin-top: 5rem; padding: 20px 30px">
+<div class="d-flex justify-content-md-between justify-content-center align-items-center">
+<img src="https://bitonite.com/tema/bitonite/assets/site/images/logo.svg" width="130px" height="35px" alt />
+<div class="d-md-flex d-none justify-content-between align-items-center" style="gap: 50px">
+<p class="text-light fs-9 p-0 m-0 cursorPointer" onclick=" location.href='/terms-of-use'" >TERMS OF USE</p>
+<p class="text-light fs-9 p-0 m-0 cursorPointer" onclick=" location.href='#'">HELP CENTER</p>
+<p class="text-light fs-9 p-0 m-0 cursorPointer" onclick=" location.href='#'">SUPPORT CENTER</p>
+</div>
+</div>
+</div>
+<hr class="m-0 p-0" style="width: 100%; color: #5a5a63" />
+<div class style="padding: 20px 30px">
+<div class="d-flex flex-md-row flex-column-reverse justify-content-between align-items-center">
+<p class="text-secondary col-xl-auto col-md-5 col-10 m-0 p-0 mt-md-0 mt-4 d-md-inline-block" id="allRights">
+©2023 Bitonite. All Rights Reserved.
+</p>
+<div class="d-flex justify-content-center align-items-center p-0 m-0" style="gap: 10px">
+<div class="dropdown">
+<button class="btn btn-althdark p-0 m-0 text-secondary" type="button" data-bs-toggle="dropdown" aria-expanded="false" style=" border-radius: 10px !important; width: 160px; height: 40px !important;">
+<i class="text-secondary fa-solid fa-globe text-center" style=" font-size: 20px !important; vertical-align: middle !important; padding-right: 5px;"></i>
+English
+<i class="text-secondary fa-solid fa-angle-down text-center" style=" font-size: 15px !important; vertical-align: middle !important; padding-left: 30px !important;"></i>
+</button>
+<ul class="dropdown-menu bg-althdark">
+<li>
+<p class="dropdown-item text-secondary" href="#">
+Select language
+</p>
+</li>
+<li>
+<a class="dropdown-item text-light" onclick="if (!window.__cfRLUnblockHandlers) return false; gbtx_languageChange(1)" href="#" data-cf-modified-9ed8e2ca83b2bca33f15a91e->türkçe</a>
+</li>
+<li>
+<a class="dropdown-item text-light" onclick="if (!window.__cfRLUnblockHandlers) return false; gbtx_languageChange(7)" href="#" data-cf-modified-9ed8e2ca83b2bca33f15a91e->deutsch</a>
+</li>
+</ul>
+</div>
+<div class="icon-hover bg-althdark d-flex align-items-center justify-content-center" onclick=" location.href='https:#'" style=" width: 40px; height: 40px; border-radius: 10px; font-size: 18px;cursor: pointer;">
+<i class="text-center text-secondary fa-brands fa-telegram"></i>
+</div>
+<div class="icon-hover bg-althdark d-flex align-items-center justify-content-center" onclick=" location.href='#'" style=" width: 40px; height: 40px; border-radius: 10px; font-size: 18px;cursor: pointer;" data-cf-modified-9ed8e2ca83b2bca33f15a91e->
+<i class="text-center text-secondary fa-brands fa-twitter"></i>
+</div>
+<div class="icon-hover bg-althdark d-flex align-items-center justify-content-center" onclick=" location.href='#'" style=" width: 40px; height: 40px; border-radius: 10px; font-size: 18px;cursor: pointer;">
+<i class="text-center text-secondary fa-brands fa-instagram"></i>
+</div>
+<div class="icon-hover bg-althdark d-flex align-items-center justify-content-center" onclick=" location.href='#'" style=" width: 40px; height: 40px; border-radius: 10px; font-size: 18px;cursor: pointer;">
+<i class="text-center text-secondary fa-brands fa-youtube"></i>
+</div>
+</div>
+</div>
+</div>
+<div class="socialIcons active">
+<a href="#"><i class="fa-brands fa-telegram"></i></a>
+<a href="#"><i class="fa-brands fa-twitter"></i></a>
+<a href="#"><i class="fa-brands fa-instagram"></i></a>
+<a href="https://youtube.com/@bitonitecom"><i class="fa-brands fa-youtube"></i></a>
+</div>
+</div>
+</div>
+</div>
+<script src="/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js" data-cf-settings="9ed8e2ca83b2bca33f15a91e-|49" defer></script>
+</body>
+</html>

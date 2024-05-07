@@ -1,0 +1,185 @@
+
+
+<%- include('partials/dashboardHeader')%>
+
+<div class="wrapper">
+	<div id="loader"></div>
+
+    <script src="https://app.mt24fx.online/vendor/sweetalert/sweetalert.all.js"></script>
+    <header class="main-header">
+      <div class="d-flex align-items-center logo-box justify-content-start">
+       
+      </div>
+      <!-- Header Navbar -->
+      <nav class="navbar navbar-static-top">
+          <!-- Sidebar toggle button-->
+          <div class="app-menu">
+              <ul class="header-megamenu nav">
+                  <li class="btn-group nav-item">
+                      <a href="#" class="waves-effect waves-light nav-link push-btn btn-primary-light"
+                          data-toggle="push-menu" role="button">
+                          <i data-feather="align-left"></i>
+                      </a>
+                  </li>
+                  <li class="btn-group nav-item d-none d-xl-inline-block">
+                      
+                  </li>
+                  <li class="btn-group nav-item d-none d-xl-inline-block">
+                      
+                  </li>
+                  <li class="btn-group nav-item d-none d-xl-inline-block">
+                      
+                  </li>
+              </ul>
+          </div>
+
+          <div class="navbar-custom-menu r-side">
+              <ul class="nav navbar-nav">
+                  <li class="btn-group d-lg-inline-flex d-none">
+                      
+                  </li>
+                  <li class="btn-group nav-item d-lg-inline-flex d-none">
+                      <a href="#" data-provide="fullscreen"
+                          class="waves-effect waves-light nav-link full-screen btn-primary-light" title="Full Screen">
+                          <i data-feather="maximize"></i>
+                      </a>
+                  </li>
+                  <!-- Notifications -->
+                  <li class="dropdown notifications-menu">
+                      
+                  </li>
+
+                  <!-- User Account-->
+                  <li class="dropdown user user-menu">
+                      <a href="#" class="waves-effect waves-light dropdown-toggle btn-primary-light"
+                          data-bs-toggle="dropdown" title="User">
+                          <i data-feather="user"></i>
+                      </a>
+                      <ul class="dropdown-menu animated flipInX">
+                          <li class="user-body">
+                            <a class="dropdown-item" href="#"><%=user.fullname%></a>
+                            <a class="dropdown-item" href="/account/<%=user._id%>"><i class="ri-user-line"></i>  Profile</a>
+                            <a class="dropdown-item" href="/assets"><i class="ri-wallet-fill"></i> My Asset</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="/logout"> <i class="ri-logout-box-r-line"></i>Logout</a>
+                            
+                          </li>
+                      </ul>
+                  </li>
+              </ul>
+          </div>
+      </nav>
+
+  </header>
+  <aside class="main-sidebar">
+    <!-- sidebar-->
+    <section class="sidebar position-relative">
+	  	<div class="multinav">
+		  <div class="multinav-scroll" style="height: 100%;">
+			  <!-- sidebar menu-->
+			  <ul class="sidebar-menu" data-widget="tree">
+				<li class=" active">
+				  <a href="/dashboard">
+                    <i class="ri-dashboard-line"></i>
+					<span>Dashboard</span>
+				  </a>
+				</li>
+                				<li class=" ">
+				  <a href="/assets">
+					<i class="ri-briefcase-line"></i>
+					<span>Assets</span>
+				  </a>
+				</li>
+				<li class=" ">
+				  <a href="/market">
+                    <i class="ri-pie-chart-line"></i>
+					<span>Markets</span>
+				  </a>
+				</li>
+				<li class=" ">
+				  <a href="/deposit">
+                    <i class="ri-add-circle-line"></i>
+					<span>Deposit</span>
+				  </a>
+				</li>
+
+                <li class=" ">
+                    <a href="/depositHistory/<%=user._id%>">
+                        <i class="ri-arrow-left-right-fill"></i>
+                      <span>Deposit History</span>
+                    </a>
+                  </li>
+                  
+                
+                <li class=" ">
+				  <a href="/withdraw">
+					<i class="ri-indeterminate-circle-line"></i>
+					<span>Withdrawal </span>
+				  </a>
+				</li>
+                
+                <li class=" ">
+                    <a href="/widthdrawHistory/<%=user._id%>">
+                        <i class="ri-arrow-left-right-fill"></i>
+                      <span>Withdrawal history</span>
+                    </a>
+                  </li>
+
+				<li class=" ">
+				  <a href="/buyCrypto">
+					<i class="ri-shopping-cart-line"></i>
+					<span>Buy Bitcoin</span>
+				  </a>
+				</li>
+               
+                
+				<li class=" ">
+				  <a href="/verify-account">
+					<i class="ri-shield-check-fill"></i>
+					<span>Verify Account</span>
+				  </a>
+				</li>
+                                			  </ul>
+		  </div>
+		</div>
+    </section>
+  </aside>
+
+<div class="col-md-12 col-lg-12 col-sm-12">
+  <div class="box">
+      <div class="box-header with-border">
+          <h4 class="box-title">Widthdrawals</h4>
+      </div>
+<div class="box-body">
+          <div class="table-responsive-md">
+<table class="table mb-0">
+<thead>
+<tr>
+<th scope="col">#</th>
+<th scope="col"> Method</th>
+<th scope="col">Amount</th>
+<th scope="col">Status</th>
+<th scope="col">Date</th>
+</tr>
+</thead>
+<tbody>
+  <% if(user.widthdraws.length > 0 ){ %>
+    <%  user.widthdraws.forEach((element, index) => {  %>
+                  <tr>
+                    <th scope="col"><%=index%></th>
+                    <th scope="col"><%=element.type%></th>
+                    <th scope="col"><%=element.amount%></th>
+                    <th scope="col"><%=element.status%></th>
+                    <th scope="col"><%=element.createdAt%></th>
+                  </tr>
+                  <%  }) %>
+                  <%  } %>
+                          </tbody>
+</table>
+</div>
+</div>
+<!-- /.box-body -->
+</div>
+</div>
+   
+    <%- include('partials/dashboardFooter')%>

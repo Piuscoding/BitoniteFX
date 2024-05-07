@@ -1,0 +1,611 @@
+
+<%- include('partials/dashboardHeader')%>
+
+
+<div class="wrapper">
+	<div id="loader"></div>
+
+    <script src="https://app.mt24fx.online/vendor/sweetalert/sweetalert.all.js"></script>
+    <header class="main-header">
+      <div class="d-flex align-items-center logo-box justify-content-start">
+          <!-- Logo -->
+          <!--<a href="https://app.mt24fx.online/dashboard" class="logo">-->
+              <!-- logo-->
+          <!--    <div class="logo-mini w-90 d-inline-block d-md-none">-->
+          <!--        <span class="light-logo"><img src="https://app.mt24fx.online/uploads/app-images/app_logo.jpg"-->
+          <!--                alt=""></span>-->
+          <!--        <span class="dark-logo"><img src="https://app.mt24fx.online/uploads/app-images/app_logo.jpg"-->
+          <!--                alt=""></span>-->
+          <!--    </div>-->
+          <!--    <div class="logo-lg d-none d-sm-inline-block">-->
+          <!--        <span class="light-logo"><img src="https://app.mt24fx.online/uploads/app-images/app_logo.jpg"-->
+          <!--                alt=""></span>-->
+          <!--        <span class="dark-logo"><img src="https://app.mt24fx.online/uploads/app-images/app_logo.jpg"-->
+          <!--                alt=""></span>-->
+          <!--    </div>-->
+          <!--</a>-->
+      </div>
+      <!-- Header Navbar -->
+      <nav class="navbar navbar-static-top">
+          <!-- Sidebar toggle button-->
+          <div class="app-menu">
+              <ul class="header-megamenu nav">
+                  <li class="btn-group nav-item">
+                      <a href="#" class="waves-effect waves-light nav-link push-btn btn-primary-light"
+                          data-toggle="push-menu" role="button">
+                          <i data-feather="align-left"></i>
+                      </a>
+                  </li>
+                  <li class="btn-group nav-item d-none d-xl-inline-block">
+                      
+                  </li>
+                  <li class="btn-group nav-item d-none d-xl-inline-block">
+                      
+                  </li>
+                  <li class="btn-group nav-item d-none d-xl-inline-block">
+                      
+                  </li>
+              </ul>
+          </div>
+
+          <div class="navbar-custom-menu r-side">
+              <ul class="nav navbar-nav">
+                  <li class="btn-group d-lg-inline-flex d-none">
+                      
+                  </li>
+                  <li class="btn-group nav-item d-lg-inline-flex d-none">
+                      <a href="#" data-provide="fullscreen"
+                          class="waves-effect waves-light nav-link full-screen btn-primary-light" title="Full Screen">
+                          <i data-feather="maximize"></i>
+                      </a>
+                  </li>
+                  <!-- Notifications -->
+                  <li class="dropdown notifications-menu">
+                      
+                  </li>
+
+                  <!-- User Account-->
+                  <li class="dropdown user user-menu">
+                      <a href="#" class="waves-effect waves-light dropdown-toggle btn-primary-light"
+                          data-bs-toggle="dropdown" title="User">
+                          <i data-feather="user"></i>
+                      </a>
+                      <ul class="dropdown-menu animated flipInX">
+                          <li class="user-body">
+                            <a class="dropdown-item" href="#"> karl</a>
+                            <a class="dropdown-item" href="/account/<%=user._id%>"><i class="ti-user text-muted me-2"></i> Profile</a>
+                            <a class="dropdown-item" href="/assets"><i class="ti-wallet text-muted me-2"></i> My Asset</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="/logout"><i class="ti-lock text-muted me-2"></i> Logout</a>
+                                
+                          </li>
+                      </ul>
+                  </li>
+              </ul>
+          </div>
+      </nav>
+
+  </header>
+  <aside class="main-sidebar">
+    <!-- sidebar-->
+    <section class="sidebar position-relative">
+	  	<div class="multinav">
+		  <div class="multinav-scroll" style="height: 100%;">
+			  <!-- sidebar menu-->
+			  <ul class="sidebar-menu" data-widget="tree">
+				<li class=" active">
+				  <a href="/dashboard">
+                    <i class="ri-dashboard-line"></i>
+					<span>Dashboard</span>
+				  </a>
+				</li>
+                				<li class=" ">
+				  <a href="/assets">
+					<i class="ri-briefcase-line"></i>
+					<span>Assets</span>
+				  </a>
+				</li>
+				<li class=" ">
+				  <a href="/market">
+                    <i class="ri-pie-chart-line"></i>
+					<span>Markets</span>
+				  </a>
+				</li>
+				<li class=" ">
+				  <a href="/deposit">
+                    <i class="ri-add-circle-line"></i>
+					<span>Deposit</span>
+				  </a>
+				</li>
+
+                <li class=" ">
+                    <a href="/depositHistory/<%=user._id%>">
+                        <i class="ri-arrow-left-right-fill"></i>
+                      <span>Deposit History</span>
+                    </a>
+                  </li>
+                  
+                
+                <li class=" ">
+				  <a href="/withdraw">
+					<i class="ri-indeterminate-circle-line"></i>
+					<span>Withdrawal </span>
+				  </a>
+				</li>
+                
+                <li class=" ">
+                    <a href="/widthdrawHistory/<%=user._id%>">
+                        <i class="ri-arrow-left-right-fill"></i>
+                      <span>Withdrawal history</span>
+                    </a>
+                  </li>
+
+				<li class=" ">
+				  <a href="/buyCrypto">
+					<i class="ri-shopping-cart-line"></i>
+					<span>Buy Bitcoin</span>
+				  </a>
+				</li>
+               
+                
+				<li class=" ">
+				  <a href="/verify-account">
+					<i class="ri-shield-check-fill"></i>
+					<span>Verify Account</span>
+				  </a>
+				</li>
+                                			  </ul>
+		  </div>
+		</div>
+    </section>
+  </aside>
+
+  <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+	  <div class="container-full">
+		<!-- Content Header (Page header) -->
+		<div class="content-header">
+			<div class="d-flex align-items-center">
+				<div class="me-auto">
+					<h4 class="page-title">Trade</h4>
+					<div class="d-inline-block align-items-center">
+						<nav>
+							<ol class="breadcrumb">
+								<li class="breadcrumb-item"><a href="#"><i class="mdi mdi-home-outline"></i></a></li>
+								<li class="breadcrumb-item active" aria-current="page">Trade</li>
+							</ol>
+						</nav>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Main content -->
+		<section class="content">
+			<div class="row">
+                <div class="col-md-7 col-sm-12">
+                    <div class="card card-body stock d-none" style="height:420px">
+                        <div class="contentBody md:h-[100%] " id="chart__container__technical"
+                            style="display: grid; gap: 0.7rem; height: 100%;">
+                            <div id="tradingview_00b30-wrapper"
+                                style="position: relative;box-sizing: content-box;width: 100%;height: 100%;margin: 0 auto !important;padding: 0 !important;font-family: -apple-system, BlinkMacSystemFont, 'Trebuchet MS', Roboto, Ubuntu, sans-serif;">
+                                <div style="width: 100%;height: 100%;background: transparent;padding: 0 !important;">
+                                    <iframe id="tradingview_00b30"
+                                        src="https://s.tradingview.com/widgetembed/?frameElementId=tradingview_07f17&amp;symbol=AAPL&amp;interval=1&amp;hidelegend=1&amp;hidesidetoolbar=1&amp;symboledit=1&amp;saveimage=1&amp;toolbarbg=f1f3f6&amp;studies=%5B%5D&amp;theme=dark&amp;style=1&amp;timezone=UTC&amp;withdateranges=1&amp;studies_overrides=%7B%7D&amp;overrides=%7B%7D&amp;enabled_features=%5B%5D&amp;disabled_features=%5B%5D&amp;locale=en&amp;utm_source=localhost&amp;utm_medium=widget&amp;utm_campaign=chart&amp;utm_term=AAPL"
+                                        style="width: 100%; height: 100%; margin: 0 !important; padding: 0 !important;"
+                                        frameborder="0" allowtransparency="true" scrolling="no"
+                                        allowfullscreen=""></iframe></div>
+                            </div>
+                        </div>
+
+                        
+                    </div>
+                    <div class="card card-body crypto" style="height:420px">
+                        <div class="contentBody md:h-[100%] " id="chart__container__technical"
+                            style="display: grid; gap: 0.7rem; height: 100%;">
+                            <div id="tradingview_00b30-wrapper"
+                                style="position: relative;box-sizing: content-box;width: 100%;height: 100%;margin: 0 auto !important;padding: 0 !important;font-family: -apple-system, BlinkMacSystemFont, 'Trebuchet MS', Roboto, Ubuntu, sans-serif;">
+                                <div style="width: 100%;height: 100%;background: transparent;padding: 0 !important;">
+                                    <iframe id="tradingview_00b30"
+                                        src="https://s.tradingview.com/widgetembed/?frameElementId=tradingview_07f17&amp;symbol=AAVE&amp;interval=1&amp;hidelegend=1&amp;hidesidetoolbar=1&amp;symboledit=1&amp;saveimage=1&amp;toolbarbg=f1f3f6&amp;studies=%5B%5D&amp;theme=dark&amp;style=1&amp;timezone=UTC&amp;withdateranges=1&amp;studies_overrides=%7B%7D&amp;overrides=%7B%7D&amp;enabled_features=%5B%5D&amp;disabled_features=%5B%5D&amp;locale=en&amp;utm_source=localhost&amp;utm_medium=widget&amp;utm_campaign=chart&amp;utm_term=AAVE"
+                                        style="width: 100%; height: 100%; margin: 0 !important; padding: 0 !important;"
+                                        frameborder="0" allowtransparency="true" scrolling="no"
+                                        allowfullscreen=""></iframe></div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div class="card card-body forex  d-none" style="height:420px">
+                        <div class="contentBody md:h-[100%] " id="chart__container__technical"
+                            style="display: grid; gap: 0.7rem; height: 100%;">
+                            <div id="tradingview_00b30-wrapper"
+                                style="position: relative;box-sizing: content-box;width: 100%;height: 100%;margin: 0 auto !important;padding: 0 !important;font-family: -apple-system, BlinkMacSystemFont, 'Trebuchet MS', Roboto, Ubuntu, sans-serif;">
+                                <div style="width: 100%;height: 100%;background: transparent;padding: 0 !important;">
+                                    <iframe id="tradingview_00b30"
+                                        src="https://s.tradingview.com/widgetembed/?frameElementId=tradingview_07f17&amp;symbol=EUR/USD&amp;interval=1&amp;hidelegend=1&amp;hidesidetoolbar=1&amp;symboledit=1&amp;saveimage=1&amp;toolbarbg=f1f3f6&amp;studies=%5B%5D&amp;theme=dark&amp;style=1&amp;timezone=UTC&amp;withdateranges=1&amp;studies_overrides=%7B%7D&amp;overrides=%7B%7D&amp;enabled_features=%5B%5D&amp;disabled_features=%5B%5D&amp;locale=en&amp;utm_source=localhost&amp;utm_medium=widget&amp;utm_campaign=chart&amp;utm_term=EUR/USD"
+                                        style="width: 100%; height: 100%; margin: 0 !important; padding: 0 !important;"
+                                        frameborder="0" allowtransparency="true" scrolling="no"
+                                        allowfullscreen=""></iframe></div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="col-md-5 col-sm-12">
+                    <div class="box">
+                        <div class="box-header with-border">
+                            <h4 class="box-title">Trade</h4>
+                        </div>
+                        <!-- Tab panes -->
+                        <div class="box-body tab-content">
+                            <div class="btn-group btn-group-toggle col-md-12">
+                                <div class="col-md-6 p-1">
+                                    <button class="btn btn-warning col-12" id="buy-trigger-btn">Buy</button>
+                                </div>
+                                <div class="col-md-6 p-1">
+                                    <button class="btn btn-outline-sell col-12" id="sell-trigger-btn">Sell</button>
+                                </div>
+                                <input type="hidden" name="action" id="action" value="buy">
+                            </div>
+                            <div class="tab-pane fade active show" id="buy">
+                                <div class="form-group">
+                                    <label for="type">Type</label>
+                                    <select name="type" id="type" class="form-select form-select-lg">
+                                        <option value="crypto">Crypto</option>
+                                        <option value="forex">Forex</option>
+                                        <option value="stock">Stock</option>
+                                    </select>
+                                    <small class="text-danger" id="assetType"></small>
+                                </div>
+                                <div class="form-group">
+                                    <label for="asset">Assets</label>
+                                    <span class="assets crypto" id="assets-crypto">
+                                        <select name="asset" id="asset" class="form-select form-select-lg">
+                                            <option value="Aave">Aave</option>
+                                            <option value="Cardano">Cardano</option>
+                                            <option value="Algorand">Algorand</option>
+                                            <option value="Anchor Protocol">Anchor Protocol</option>
+                                            <option value="Apecoin">Apecoin</option>
+                                            <option value="Aurora">Aurora</option>
+                                            <option value="Avalanche">Avalanche</option>
+                                            <option value="Axie Infinity">Axie Infinity</option>
+                                            <option value="Bitcoin Cash">Bitcoin Cash</option>
+                                            <option value="Boring DAO">Boring DAO</option>
+                                            <option value="Bitcoin">Bitcoin</option>
+                                            <option value="Bitcoin Gold">Bitcoin Gold</option>
+                                            <option value="Comdex">Comdex</option>
+                                            <option value="Cronos">Cronos</option>
+                                            <option value="Dai">Dai</option>
+                                            <option value="Dash">Dash</option>
+                                            <option value="Defi Land">Defi Land</option>
+                                            <option value="Polkadot">Polkadot</option>
+                                            <option value="Dogecoin">Dogecoin</option>
+                                            <option value="Evmos">Evmos</option>
+                                            <option value="Ethereum Classic">Ethereum Classic</option>
+                                            <option value="Ethereum">Ethereum</option>
+                                            <option value="Stepn">Stepn</option>
+                                            <option value="Gochain">Gochain</option>
+                                            <option value="The Graph">The Graph</option>
+                                            <option value="Gate Token">Gate Token</option>
+                                            <option value="ChainLink">ChainLink</option>
+                                            <option value="Link">Link</option>
+                                            <option value="Litecoin">Litecoin</option>
+                                            <option value="Decentraland">Decentraland</option>
+                                            <option value="Matic">Matic</option>
+                                            <option value="Nexo">Nexo</option>
+                                            <option value="Energi">Energi</option>
+                                            <option value="Origin Protocol">Origin Protocol</option>
+                                            <option value="Okb">Okb</option>
+                                            <option value="Optimism">Optimism</option>
+                                            <option value="Orion Protocol">Orion Protocol</option>
+                                            <option value="Raini">Raini</option>
+                                            <option value="Rarible">Rarible</option>
+                                            <option value="Safepal">Safepal</option>
+                                            <option value="Shiba Inu">Shiba Inu</option>
+                                            <option value="Step Finance">Step Finance</option>
+                                            <option value="Sushi">Sushi</option>
+                                            <option value="Telos">Telos</option>
+                                            <option value="Tron">Tron</option>
+                                            <option value="Solana">Solana</option>
+                                            <option value="Uniswap">Uniswap</option>
+                                            <option value="USD Coin">USD Coin</option>
+                                            <option value="Tether">Tether</option>
+                                            <option value="VeChain">VeChain</option>
+                                            <option value="Wing Finance">Wing Finance</option>
+                                            <option value="Chain">Chain</option>
+                                            <option value="Stellar">Stellar</option>
+                                            <option value="Monero">Monero</option>
+                                            <option value="Proton">Proton</option>
+                                            <option value="Tezos">Tezos</option>
+                                            <option value="Zcash">Zcash</option>
+                                            <option value="Zignaly">Zignaly</option>
+                                        </select>
+                                    </span>
+                                    <span class="assets forex d-none" id="assets-forex">
+                                        <select name="asset" id="asset" class="form-select form-select-lg">
+                                            <option value="EUR/USD">EUR/USD</option>
+                                            <option value="GBP/USD">GBP/USD</option>
+                                            <option value="USD/CHF">USD/CHF</option>
+                                            <option value="USD/CAD">USD/CAD</option>
+                                            <option value="NZD/USD">NZD/USD</option>
+                                            <option value="USD/JPY">USD/JPY</option>
+                                            <option value="AUD/USD">AUD/USD</option>
+                                            <option value="USD/GBP">USD/GBP</option>
+                                            <option value="EUR/CAD">EUR/CAD</option>
+                                            <option value="EUR/AUD">EUR/AUD</option>
+                                            <option value="EUR/JPY">EUR/JPY</option>
+                                            <option value="EUR/CHF">EUR/CHF</option>
+                                            <option value="EUR/GBP">EUR/GBP</option>
+                                            <option value="AUD/CAD">AUD/CAD</option>
+                                            <option value="GBP/CHF">GBP/CHF</option>
+                                            <option value="GBP/JPY">GBP/JPY</option>
+                                            <option value="CHF/JPY">CHF/JPY</option>
+                                            <option value="AUD/JPY">AUD/JPY</option>
+                                            <option value="AUD/NZD">AUD/NZD</option>
+                                        </select>
+                                    </span>
+                                    <span class="assets stock d-none" id="assets-stock">
+                                        <select name="asset"  id="asset" class="form-select form-select-lg">
+                                            <option value="AAPL" >Apple</option>
+                                            <option value="ABT" >Abbot Labs</option>
+                                            <option value="ATER" >Aterian Inc</option>
+                                            <option value="APT" >Alpha Pro Tech</option>
+                                            <option value="AMT" >American Tower</option>
+                                            <option value="AEMD" >Aethlon Medical</option>
+                                            <option value="AMD" >AMD</option>
+                                            <option value="AXP" >American Express</option>
+                                            <option value="AIG" >American International Group</option>
+                                            <option value="ADBE" >Adobe</option>
+                                            <option value="ASML" >ASML</option>
+                                            <option value="AMC" >AMC Holdings</option>
+                                            <option value="AMZN" >Amazon</option>
+                                            <option value="ADI" >Analog Devices</option>
+                                            <option value="C" >Citigroup</option>
+                                            <option value="CVX" >Chevron</option>
+                                            <option value="DIS" >Disney</option>
+                                            <option value="FB" >Meta Platforms Inc</option>
+                                            <option value="CEI" >Camber Energy</option>
+                                            <option value="EBAY" >Ebay</option>
+                                            <option value="CSCO" >Cisco</option>
+                                            <option value="GEVO" >Gevo Inc</option>
+                                            <option value="TSLA" >Tesla</option>
+                                            <option value="WMT" >Walmart</option>
+                                            <option value="INTC" >Intel</option>
+                                            <option value="MMM" >3M Company</option>
+                                            <option value="FSLY" >Fastly Inc</option>
+                                            <option value="LEN" >Lennar Corporation</option>
+                                            <option value="PG" >Procter &amp; Gamble</option>
+                                            <option value="JNJ" >Johnson &amp; Johnson</option>
+                                            <option value="RWLK" >ReWalk Robotics</option>
+                                            <option value="WFC" >Wells Fargo</option>
+                                            <option value="MA" >MasterCard</option>
+                                            <option value="UNH" >United Health Group</option>
+                                            <option value="MRIN" >Marin Software</option>
+                                            <option value="LVS" >Las Vegas Sands</option>
+                                            <option value="MDLZ" >Mondelez</option>
+                                            <option value="INMD" >Inmode</option>
+                                            <option value="JPM" >JP Morgan</option>
+                                            <option value="SQ" >Square</option>
+                                            <option value="TMUS" >T-Mobile</option>
+                                            <option value="CCO" >Clear Channel Outdoor</option>
+                                            <option value="RKLB" >Rocket Lab</option>
+                                            <option value="MSI" >Motorola</option>
+                                            <option value="HD" >Home Depot</option>
+                                            <option value="CMCSA" >Comcast</option>
+                                            <option value="TSM" >TSMC</option>
+                                            <option value="PEP" >Pepsico</option>
+                                            <option value="TRIP" >TripAdvisor</option>
+                                            <option value="SBUX" >Starbucks</option>
+                                            <option value="IBM" >IBM</option>
+                                            <option value="RL" >Ralph Lauren</option>
+                                            <option value="RACE" >Ferrari</option>
+                                            <option value="GS" >Goldman Sachs</option>
+                                            <option value="SSRM" >SSR Mining</option>
+                                            <option value="ORCL" >Oracle</option>
+                                            <option value="GOOGL" >Google</option>
+                                            <option value="MO" >Attria Group</option>
+                                            <option value="GE" >General Electric</option>
+                                            <option value="CAT" >Caterpillar</option>
+                                            <option value="COST" >Costco</option>
+                                            <option value="T" >At&amp;t</option>
+                                            <option value="V" >Visa</option>
+                                            <option value="SNAP" >Snap Inc</option>
+                                            <option value="TM" >Toyota Motor</option>
+                                            <option value="XOM" >Exxon Mobil</option>
+                                            <option value="NFLX" >Netflix</option>
+                                            <option value="TEVA" >Teva</option>
+                                            <option value="CRM" >Salesforce Inc</option>
+                                            <option value="MNST" >Monster</option>
+                                            <option value="GM" >General Motors</option>
+                                            <option value="CRDF" >Cardiff Oncology Inc</option>
+                                            <option value="MRK" >Merck</option>
+                                            <option value="PFE" >Pfizer</option>
+                                            <option value="HON" >Honeywell</option>
+                                            <option value="VZ" >Verizon</option>
+                                            <option value="KO" >Coca Cola</option>
+                                            <option value="BIDU" >Baidu Inc</option>
+                                            <option value="BABA" >Alibaba</option>
+                                            <option value="CHWY" >Chewy Inc</option>
+                                            <option value="BA" >Boeing</option>
+                                            <option value="NVS" >Novartis</option>
+                                            <option value="NVDA" >Nvidia</option>
+                                            <option value="CL" >Colgate-Palmolive</option>
+                                            <option value="MSFT" >Microsoft</option>
+                                            <option value="PYPL" >Paypal</option>
+                                            <option value="NKE" >Nike</option>
+                                            <option value="TWTR" >Twitter</option>
+                                            <option value="BMY" >Bristol Myers</option>
+                                            <option value="BAC" >Bank of America</option>
+                                            <option value="MS" >Morgan Stanley</option>
+                                        </select>
+                                    </span>
+                                    <small class="text-danger" id="assetError"></small>
+                                </div>
+                                <div class="form-group">
+                                    <label for="type">Lot size</label>
+                                    <input type="text" id="lot_size" class="form-control" placeholder="Lot size">
+                                    <small class="text-danger" id="lotSizeError"></small>
+                                </div>
+                                <div class="form-group">
+                                    <label for="type">Entry Price</label>
+                                    <input type="text" id="entry_price" class="form-control" placeholder="Entry price">
+                                    <small class="text-danger" id="entryPriceError"></small>
+                                </div>
+                                <div class="form-group">
+                                    <label for="duration">Duration</label>
+                                    <select name="duration" id="duration" class="form-select form-select-lg">
+                                        <option value="5 minutes">5 minutes</option>
+                                        <option value="10 minutes">10 minutes</option>
+                                        <option value="15 minutes">15 minutes</option>
+                                        <option value="30 minutes">30 minutes</option>
+                                        <option value="1 hour">1 hour</option>
+                                        <option value="2 hours">2 hours</option>
+                                        <option value="4 hours">4 hours</option>
+                                        <option value="6 hours">6 hours</option>
+                                        <option value="10 hours">10 hours</option>
+                                        <option value="20 hours">20 hours</option>
+                                        <option value="1 day">1 day</option>
+                                        <option value="2 days">2 days</option>
+                                        <option value="3 days">3 days</option>
+                                        <option value="4 days">4 days</option>
+                                        <option value="5 days">5 days</option>
+                                        <option value="6 days">6 days</option>
+                                        <option value="7 days">7 days</option>
+                                        <option value="1 week">1 week</option>
+                                        <option value="2 weeks">2 weeks</option>
+                                        <option value="3 weeks">3 weeks</option>
+                                    </select>
+                                    <small class="text-danger" id="durationError"></small>
+                                </div>
+                                <div class="form-group">
+                                    <label for="amount">Amount</label>
+                                    <input type="text" id="amount" class="form-control" placeholder="Amount">
+                                    <small class="text-danger" id="amountError"></small>
+                                </div>
+                                <div class="form-group my-3">
+                                    <div class="form-check pull-right">
+                                        <input class="form-check" type="checkbox" value="" id="advancedCheck">
+                                        <label class="form-check" for="advancedCheck">
+                                            Advanced
+                                        </label>
+                                    </div>
+                                </div>
+                                <span class="d-none" id="advancedSpan">
+                                    <div class="form-group">
+                                        <label for="type">Take Profit</label>
+                                        <input type="text" id="take_profit" class="form-control" placeholder="">
+                                        <small class="text-danger" id="takeProfitError"></small>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="type">Stop Loss</label>
+                                        <input type="text" id="stop_loss" class="form-control" placeholder="">
+                                        <small class="text-danger" id="stopLossError"></small>
+                                    </div>
+                                </span>
+                                <div>
+                                    <button id="place-trade-btn" type="button" class="btn w-p100 btn-success">PLACE ORDER</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-12 col-12">
+                    <div class="box h-400">
+                        <div class="box-header with-border">
+                            <h4 class="box-title">Trade History</h4>
+                        </div>
+                        <div class="box-body  overflow-auto">
+                            <div class="row">
+                                <div class="col-md-12 mt-2">
+                                    <ul class="nav nav-pills mb-3 justify-content-center col-12" id="pills-tab" role="tablist">
+                                        <li class="nav-item" role="presentation">
+                                            <button class="nav-link active" id="pills-buy-tab" data-bs-toggle="pill" data-bs-target="#pills-buy" type="button" role="tab" aria-controls="pills-buy" aria-selected="true">Buy</button>
+                                        </li>
+                                        <li class="nav-item" role="presentation">
+                                            <button class="nav-link" id="pills-sell-tab col-12" data-bs-toggle="pill" data-bs-target="#pills-sell" type="button" role="tab" aria-controls="pills-sell" aria-selected="false">Sell</button>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-12 mt-2">
+                                    <div class="tab-content" id="pills-tabContent">
+                                        <div class="tab-pane fade show active" id="pills-buy" role="tabpanel" aria-labelledby="pills-buy-tab">
+                                            <div class="table-responsive">
+                                                <table class="table  table-borderless table-hover">
+                                                    <thead class="b-1" style="border: 2px solid red; border-radius: 25px;">
+                                                        <tr>
+                                                            <th scope="col">Date</th>
+                                                            <th scope="col">Asset</th>
+                                                            <th scope="col">Action</th>
+                                                            <th scope="col">Amount</th>
+                                                            <th scope="col">Lot size</th>
+                                                            <th scope="col"></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                                                                                    <tr>
+                                                                <td colspan="6">No record found</td>
+                                                            </tr>
+                                                                                                            </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane fade" id="pills-sell" role="tabpanel" aria-labelledby="pills-sell-tab">
+                                            <div class="table-responsive">
+                                                <table class="table  table-borderless table-hover">
+                                                    <thead class="b-1" style="border: 2px solid red; border-radius: 25px;">
+                                                        <tr>
+                                                            <th scope="col">Date</th>
+                                                            <th scope="col">Asset</th>
+                                                            <th scope="col">Action</th>
+                                                            <th scope="col">Lot size</th>
+                                                            <th scope="col"></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                                                                                    <tr>
+                                                                <td colspan="6">No record found</td>
+                                                            </tr>
+                                                                                                            </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+			</div>
+		</section>
+		<!-- /.content -->
+	  </div>
+  </div>
+ 
+    <script>
+        $(document).ready(function(){
+            toastr.options = {
+                "positionClass": "toast-top-center",
+            }
+            new ClipboardJS('.copyBtn');
+        });
+    </script>
+            <script>
+    $(document).ready(function () {
+        $('#advancedCheck').click(function () {
+            if ($(this).is(':checked')) {
+                $('#advancedSpan').removeClass('d-none');
+            } else {
+                $('#advancedSpan').addClass('d-none');
+            }
+        });
+
+        $('#type').on('change',function(e){
+            let selected = $(this).find(':selected').val();
+            $('.assets').addClass('d-none');
+            $('.assets.'+selected).removeClass('d-none');
+            $('.card.card-body').addClass('d-none');
+            $('.card.card-body.'+selected).removeClass('d-none');
+
+        });
+      
+        
+<%- include('partials/dashboardFooter')%>

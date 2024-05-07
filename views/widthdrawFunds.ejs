@@ -1,0 +1,408 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="https://crypto-admin-templates.multipurposethemes.com/sass/bs5/images/favicon.ico">
+
+    <title>Withdrawal - Crypto Dashbaord</title>
+
+	<!-- Vendors Style-->
+    <link rel="stylesheet" href="https://app.mt24fx.online/theme-assets/css/vendors_css.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.2.0/remixicon.css">
+
+	<!-- Style-->
+	<link rel="stylesheet" href="https://app.mt24fx.online/theme-assets/css/style.css">
+	<link rel="stylesheet" href="https://app.mt24fx.online/theme-assets/css/skin_color.css">
+    <link rel="stylesheet" href="https://app.mt24fx.online/theme-assets/css/main-custom.css">
+    <link rel="stylesheet" href="https://app.mt24fx.online/theme-assets/plugins/toastr/build/toastr.min.css">
+    <link rel="stylesheet" href="https://app.mt24fx.online/theme-assets/plugins/font-awesome/css/all.min.css">
+    <link rel="stylesheet" href="https://app.mt24fx.online/theme-assets/assets/vendor_components/bootstrap/dist/css/bootstrap.css">
+
+    <style>
+        /*-----Preloader---*/
+        /* #loader {
+            position: fixed;
+            width: 100%;
+            height: 100vh;
+            z-index: 999999;
+            overflow: visible;
+            background: #fff url("https://app.mt24fx.online/theme-assets/images/preloaders/1.gif") no-repeat center center;
+        } */
+        
+        @media (max-width: 767px) {
+          .main-sidebar {
+            margin-top: 80px !important;
+            }
+        }
+    </style>
+    <style>
+        .swal2-title{
+            color:black !important;
+        }
+        .sidebar-menu > li > a > i {
+            font-size: 15px !important;
+            margin-right: 2px !important;
+        }
+    </style>
+      </head>
+
+<body class="hold-transition dark-skin sidebar-mini theme-warning fixed">
+
+<div class="wrapper">
+	<div id="loader"></div>
+
+    <script src="https://app.mt24fx.online/vendor/sweetalert/sweetalert.all.js"></script>
+    <header class="main-header">
+      <div class="d-flex align-items-center logo-box justify-content-start">
+          <!-- Logo -->
+          <!--<a href="https://app.mt24fx.online/dashboard" class="logo">-->
+              <!-- logo-->
+          <!--    <div class="logo-mini w-90 d-inline-block d-md-none">-->
+          <!--        <span class="light-logo"><img src="https://app.mt24fx.online/uploads/app-images/app_logo.jpg"-->
+          <!--                alt=""></span>-->
+          <!--        <span class="dark-logo"><img src="https://app.mt24fx.online/uploads/app-images/app_logo.jpg"-->
+          <!--                alt=""></span>-->
+          <!--    </div>-->
+          <!--    <div class="logo-lg d-none d-sm-inline-block">-->
+          <!--        <span class="light-logo"><img src="https://app.mt24fx.online/uploads/app-images/app_logo.jpg"-->
+          <!--                alt=""></span>-->
+          <!--        <span class="dark-logo"><img src="https://app.mt24fx.online/uploads/app-images/app_logo.jpg"-->
+          <!--                alt=""></span>-->
+          <!--    </div>-->
+          <!--</a>-->
+      </div>
+      <!-- Header Navbar -->
+      <nav class="navbar navbar-static-top">
+          <!-- Sidebar toggle button-->
+          <div class="app-menu">
+              <ul class="header-megamenu nav">
+                  <li class="btn-group nav-item">
+                      <a href="#" class="waves-effect waves-light nav-link push-btn btn-primary-light"
+                          data-toggle="push-menu" role="button">
+                          <i data-feather="align-left"></i>
+                      </a>
+                  </li>
+                  <li class="btn-group nav-item d-none d-xl-inline-block">
+                      
+                  </li>
+                  <li class="btn-group nav-item d-none d-xl-inline-block">
+                      
+                  </li>
+                  <li class="btn-group nav-item d-none d-xl-inline-block">
+                      
+                  </li>
+              </ul>
+          </div>
+
+          <div class="navbar-custom-menu r-side">
+              <ul class="nav navbar-nav">
+                  <li class="btn-group d-lg-inline-flex d-none">
+                      
+                  </li>
+                  <li class="btn-group nav-item d-lg-inline-flex d-none">
+                      <a href="#" data-provide="fullscreen"
+                          class="waves-effect waves-light nav-link full-screen btn-primary-light" title="Full Screen">
+                          <i data-feather="maximize"></i>
+                      </a>
+                  </li>
+                  <!-- Notifications -->
+                  <li class="dropdown notifications-menu">
+                      
+                  </li>
+
+                  <!-- User Account-->
+                  <li class="dropdown user user-menu">
+                      <a href="#" class="waves-effect waves-light dropdown-toggle btn-primary-light"
+                          data-bs-toggle="dropdown" title="User">
+                          <i data-feather="user"></i>
+                      </a>
+                      <ul class="dropdown-menu animated flipInX">
+                          <li class="user-body">
+                            <a class="dropdown-item" href="#"> <%=user.fullname%></a>
+                            <a class="dropdown-item" href="/account/<%=user._id%>"><i class="ri-user-line"></i> Profile</a>
+                            <a class="dropdown-item" href="/assets"><i class="ri-wallet-fill"></i> My Asset</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="/logout"><i class="ri-logout-box-r-line"></i> Logout</a>
+                                
+                          </li>
+                      </ul>
+                  </li>
+              </ul>
+          </div>
+      </nav>
+
+  </header>
+  <aside class="main-sidebar">
+    <!-- sidebar-->
+    <section class="sidebar position-relative">
+	  	<div class="multinav">
+		  <div class="multinav-scroll" style="height: 100%;">
+			  <!-- sidebar menu-->
+			  <ul class="sidebar-menu" data-widget="tree">
+				<li class=" active">
+				  <a href="/dashboard">
+                    <i class="ri-dashboard-line"></i>
+					<span>Dashboard</span>
+				  </a>
+				</li>
+                				<li class=" ">
+				  <a href="/assets">
+					<i class="ri-briefcase-line"></i>
+					<span>Assets</span>
+				  </a>
+				</li>
+				<li class=" ">
+				  <a href="/market">
+                    <i class="ri-pie-chart-line"></i>
+					<span>Markets</span>
+				  </a>
+				</li>
+				<li class=" ">
+				  <a href="/deposit">
+                    <i class="ri-add-circle-line"></i>
+					<span>Deposit</span>
+				  </a>
+				</li>
+
+                <li class=" ">
+                    <a href="/depositHistory/<%=user._id%>">
+                        <i class="ri-arrow-left-right-fill"></i>
+                      <span>Deposit History</span>
+                    </a>
+                  </li>
+                  
+                
+                <li class=" ">
+				  <a href="/withdraw">
+					<i class="ri-indeterminate-circle-line"></i>
+					<span>Withdrawal </span>
+				  </a>
+				</li>
+                
+                <li class=" ">
+                    <a href="/widthdrawHistory/<%=user._id%>">
+                        <i class="ri-arrow-left-right-fill"></i>
+                      <span>Withdrawal history</span>
+                    </a>
+                  </li>
+
+				<li class=" ">
+				  <a href="/buyCrypto">
+					<i class="ri-shopping-cart-line"></i>
+					<span>Buy Bitcoin</span>
+				  </a>
+				</li>
+               
+                
+				<li class=" ">
+				  <a href="/verify-account">
+					<i class="ri-shield-check-fill"></i>
+					<span>Verify Account</span>
+				  </a>
+				</li>
+                                			  </ul>
+		  </div>
+		</div>
+    </section>
+  </aside>
+
+  <!-- Content Wrapper. Contains page content -->
+     <div class="content-wrapper">
+	  <div class="container-full">
+		<div class="content-header">
+			<div class="d-flex align-items-center">
+				<div class="me-auto">
+					<h4 class="page-title">Withdrawal</h4>
+					<div class="d-inline-block align-items-center">
+						<nav>
+							<ol class="breadcrumb">
+								<li class="breadcrumb-item"><a href="#"><i class="ri-home-line"></i></a></li>
+								<li class="breadcrumb-item active" aria-current="page">Withdrawal</li>
+							</ol>
+						</nav>
+					</div>
+				</div>
+			</div>
+		</div>
+		<section class="content">
+			<div class="row">
+			  <div class="col-12">
+				<div class="box">
+                    <div class="box-header with-border">
+                        <h4 class="box-title">Withdraw</h4>
+                    </div>
+					<div class="box-body">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-12 mx-auto p-3">
+                                <p>To make a withdrawal, select your balance, amount and verify the address you wish for payment to be made into</p>
+                                <form action="/widthdraw/<%=user._id%>" method="POST">
+                                            <div class="form-row">
+                                        <div class="form-group">
+                                            <label class="my-1" for="type">Type</label>
+                                            <select name="type" class="form-select form-select-lg " id="type">
+                                                    <option value="crypto" >Crypto</option>
+                                                    <option value="bank" >Bank</option>
+                                                    <option value="paypal" >Paypal</option>
+                                            </select>
+                                            <small class="text-danger" id="typeError"></small>
+                                        </div>
+                                        <span class="select-options crypto">
+                                            <div class="form-group">
+                                                <label class="my-1" for="payment_method_id">Assets</label>
+                                                <select name="type" name="" class="form-select form-select-lg form-control-lg " id="type">
+                                                    <option value="bitcoin" >Bitcoin</option>
+                                                    <option value="ethereum">Ethereum</option>
+                                                    <option value="dogecoin" >Dogecoin</option>
+                                                    <option value="usdt" >USDT</option>
+                                                    <option value="litecoin">Litecoin</option>
+                                                </select>
+                                                <small class="text-danger" id="paymentMethodError"></small>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="my-1" for="amount">Amount</label>
+                                                <input type="text" class="form-control form-control-lg" name="amount" id="amount" placeholder="Enter amount">
+                                                <small class="text-danger" id="amountError"></small>
+                                                <!-- <div class="mt-2">
+                                                    <span>Balance</span>
+                                                        <span class="balance-amount bitcoin charge" data-amount="0.00">0.00</span>
+                                                        <span class="balance-amount d-none ethereum" data-amount="0.00">0.00</span>
+                                                        <span class="balance-amount d-none dogecoin"  data-amount="0.00">0.00</span>
+                                                        <span class="balance-amount d-none usdt"  data-amount="0.00">0.00</span>
+                                                        <span class="balance-amount d-none litecoin"  data-amount="0.00">0.00</span>
+                                                        <span id="balance-symbol"></span>
+                                                </div> -->
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="my-1" for="wallet_address">Wallet Address</label>
+                                                <input type="text" class="form-control form-control-lg" name="wallet_address" id="wallet_address" value="" placeholder="Wallet Address">
+                                                <small class="text-danger" id="walletAddressError"></small>
+                                            </div>
+                                        </span>
+                                        <span class="select-options bank d-none">
+                                            <div class="form-group">
+                                                <label class="my-1" for="amount">Amount</label>
+                                                <input type="text" class="form-control form-control-lg" name="amount" id="amount" value="" placeholder="Enter amount">
+                                                <small class="text-danger" id="bankAmountError"></small>
+                                                <!-- <div class="mt-2">
+                                                    <span>Balance</span>
+                                                        <span class="usd-balance-amount" data-amount="0.00" id="bank-balance-amount" >0.00</span>
+                                                        <span id="balance-symbol">USD</span>
+                                                </div> -->
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="my-1" for="bank_name">Bank Name</label>
+                                                <input type="text" class="form-control form-control-lg" name="bank_name" id="bank_name" value="" placeholder="">
+                                                <small class="text-danger" id="bankNameError"></small>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="my-1" for="account_name">Account Name</label>
+                                                <input type="text" class="form-control form-control-lg" name="account_name" id="account_name" value="" placeholder="">
+                                                <small class="text-danger" id="accountNameError"></small>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="my-1" for="account_number">Account Number</label>
+                                                <input type="text" class="form-control form-control-lg" name="account_number" id="account_number" value="" placeholder="">
+                                                <small class="text-danger" id="accountNumberError"></small>
+                                            </div>
+                                            <div class="form-group">
+                                                <p class="b-1 rounded p-2">
+                                                    Your Account Manager may request further information.
+                                                </p>
+                                            </div>
+                                        </span>
+                                        <span class="select-options paypal d-none">
+                                            <div class="form-group">
+                                                <label class="my-1" for="paypal_amount">Amount</label>
+                                                <input type="text" class="form-control form-control-lg" name="amount" id="amount"placeholder="Enter amount">
+                                                <small class="text-danger" id="paypalAmountError"></small>
+                                                <!-- <div class="mt-2">
+                                                    <span>Balance</span>
+                                                        <span class="usd-balance-amount" data-amount="0.00" id="paypal-balance-amount">0.00</span>
+                                                        <span id="balance-symbol">USD</span>
+                                                </div> -->
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="my-1" for="paypal_email">Paypal Email</label>
+                                                <input type="text" class="form-control form-control-lg" name="paypal_email" id="paypal_email" value="" placeholder="Paypal Email">
+                                                <small class="text-danger" id="paypalEmailError"></small>
+                                            </div>
+                                        </span>
+                                        <div class="form-group">
+                                            <button class="btn  btn-success col-12" type="submit" id="withdraw-btn"> Withdraw</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+					</div>
+			    </div>
+			  </div>
+             
+			</div>
+		</section>
+	  </div>
+  </div>
+  <!-- /.content-wrapper -->
+  <footer class="main-footer">
+	  &copy; 2024 Crypto Dashboard All Rights Reserved.
+  </footer>
+
+  <!-- Add the sidebar's background. This div must be placed immediately after the control sidebar -->
+  <div class="control-sidebar-bg"></div>
+
+</div>
+<!-- ./wrapper -->
+
+	<!-- Vendor JS -->
+    <script src="https://app.mt24fx.online/theme-assets/js/vendors.min.js"></script>
+	<script src="https://app.mt24fx.online/theme-assets/js/pages/chat-popup.js"></script>
+    <script src="https://app.mt24fx.online/theme-assets/assets/icons/feather-icons/feather.min.js"></script>
+    <script src="https://app.mt24fx.online/theme-assets/plugins/axios/dist/axios.min.js"></script>
+    <script src="https://app.mt24fx.online/theme-assets/plugins/toastr/build/toastr.min.js"></script>
+    <script src="https://app.mt24fx.online/theme-assets/plugins/clipboard/clipboard.min.js"></script>
+
+    <script src="https://app.mt24fx.online/theme-assets/assets/vendor_components/Web-Ticker-master/jquery.webticker.min.js"></script>
+
+	<!-- Crypto Admin App -->
+	<script src="https://app.mt24fx.online/theme-assets/js/template.js"></script>
+	<script src="https://app.mt24fx.online/theme-assets/js/pages/dashboard10.js"></script>
+    <script>
+        $(document).ready(function(){
+            toastr.options = {
+                "positionClass": "toast-top-center",
+            }
+            new ClipboardJS('.copyBtn');
+        });
+    </script>
+            <script>
+    $(document).ready(function(){
+        $('#type').on('change',function(){
+            let type = $(this).val();
+            console.log(type);
+            if(type === 'crypto'){
+                $('.select-options').addClass('d-none');
+                $('.select-options.'+type).removeClass('d-none');
+                return true;
+            }
+            if(type === 'bank'){
+                $('.select-options').addClass('d-none');
+                $('.select-options.'+type).removeClass('d-none');
+                return true;
+            }
+            if(type === 'paypal'){
+                $('.select-options').addClass('d-none');
+                $('.select-options.'+type).removeClass('d-none');
+                return true;
+            }
+        });  
+     
+    });
+</script>
+
+</body>
+</html>

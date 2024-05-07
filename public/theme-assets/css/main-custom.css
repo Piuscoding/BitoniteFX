@@ -1,0 +1,48 @@
+.form-control {
+    /* make background color #343b4a */
+    background-color: #343b4a !important;
+    /* placeholder color white */
+    color: #fff !important;
+    border-radius: 8px !important;
+    background: rgb(31, 39, 58);
+    padding: 1rem;
+    box-sizing: border-box;
+    outline: none;
+    font-size: 16px;
+    border: 1px solid transparent;
+}
+
+.form-control::placeholder, .form-control::-webkit-input-placeholder {
+    color: #fff !important;
+}
+
+label {
+     color: rgb(163, 163, 163);
+}
+
+.dashboard-bg {
+    background-color: rgb(14, 18, 27) !important;
+    color: white !important;
+    min-height: 100vh;
+    font-size: 14px;
+    place-content: center;
+    max-width: 100%;
+    padding: 20px;
+}
+
+.dashboard-title{
+    max-width: 360px !important;
+    font-size: 24px !important;
+    text-align: left !important;
+    font-weight: 500 !important;
+    /* margin-bottom: 50px !important; */
+    line-height: 29px !important;
+}
+
+a:visited, a:link, a:active {
+    text-decoration: none;
+    color: rgb(17, 153, 250);
+    font-weight: 600;
+}
+
+

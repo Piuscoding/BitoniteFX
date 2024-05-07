@@ -1,0 +1,206 @@
+ <!-- /.content-wrapper -->
+ <footer class="main-footer">
+  &copy; 2024 Crypto Dashboard All Rights Reserved.
+</footer>
+
+<!-- Add the sidebar's background. This div must be placed immediately after the control sidebar -->
+<div class="control-sidebar-bg"></div>
+
+</div>
+<!-- ./wrapper -->
+
+<!-- Vendor JS -->
+  <script src="https://app.mt24fx.online/theme-assets/js/vendors.min.js"></script>
+<script src="https://app.mt24fx.online/theme-assets/js/pages/chat-popup.js"></script>
+  <script src="https://app.mt24fx.online/theme-assets/assets/icons/feather-icons/feather.min.js"></script>
+  <script src="https://app.mt24fx.online/theme-assets/plugins/axios/dist/axios.min.js"></script>
+  <script src="https://app.mt24fx.online/theme-assets/plugins/toastr/build/toastr.min.js"></script>
+  <script src="https://app.mt24fx.online/theme-assets/plugins/clipboard/clipboard.min.js"></script>
+
+  <script src="https://app.mt24fx.online/theme-assets/assets/vendor_components/Web-Ticker-master/jquery.webticker.min.js"></script>
+
+<!-- Crypto Admin App -->
+<script src="https://app.mt24fx.online/theme-assets/js/template.js"></script>
+<script src="https://app.mt24fx.online/theme-assets/js/pages/dashboard10.js"></script>
+  <script>
+      $(document).ready(function(){
+          toastr.options = {
+              "positionClass": "toast-top-center",
+          }
+          new ClipboardJS('.copyBtn');
+      });
+  </script>
+          <script>
+  $(document).ready(function () {
+      $('#advancedCheck').click(function () {
+          if ($(this).is(':checked')) {
+              $('#advancedSpan').removeClass('d-none');
+          } else {
+              $('#advancedSpan').addClass('d-none');
+          }
+      });
+
+      $('#type').on('change',function(e){
+          let selected = $(this).find(':selected').val();
+          $('.assets').addClass('d-none');
+          $('.assets.'+selected).removeClass('d-none')
+      });
+      $('#asset').on('change',function(e){
+          let asset = $(this).find(':selected').val();
+          $(this).val($(this).find(':selected').val());
+      });
+
+      $('#place-trade-btn').on('click',function(){
+          let asset = $('#asset').val();
+          let lotSize = $('#lot_size').val();
+          let type = $('#type').find(':selected').val();
+          let take_profit = $('#take_profit').val();
+          let stop_loss = $('#stop_loss').val();
+          let entry_price = $('#entry_price').val();
+          let action = $('#action').val();
+          let amount = $('#amount').val();
+
+          if(!asset){
+              $('#asset').addClass('is-invalid');
+              $('#assetError').text('Select an asset');
+          }else{
+              $('#asset').removeClass('is-invalid');
+              $('#assetError').text('');
+          }
+
+          if(!amount){
+              $('#amount').addClass('is-invalid');
+              $('#amountError').text('Select an asset');
+          }else{
+              $('#amount').removeClass('is-invalid');
+              $('#amountError').text('');
+          }
+
+          if(!action){
+              $('#action').addClass('is-invalid');
+              $('#actionError').text('Select an transaction type');
+          }else{
+              $('#action').removeClass('is-invalid');
+              $('#actionError').text('');
+          }
+
+          if(!lotSize){
+              $('#lot_size').addClass('is-invalid');
+              $('#lotSizeError').text('Lot size is required');
+          }else{
+              $('#lot_size').removeClass('is-invalid');
+              $('#lotSizeError').text('');
+          }
+
+          if(!type){
+              $('#type').addClass('is-invalid');
+              $('#typeError').text('select type');
+          }else{
+              $('#type').removeClass('is-invalid');
+              $('#typeError').text('');
+          }
+
+          if(!entry_price){
+              $('#entry_price').addClass('is-invalid');
+              $('#entry_priceError').text('Enter an entry price');
+          }else{
+              $('#entry_price').removeClass('is-invalid');
+              $('#entry_priceError').text('');
+          }
+
+          if(($('#typeError').text() == '' || $('#typeError').text() ==null) && 
+              ($('#lotSizeError').text() == '' || $('#lotSizeError').text() ==null) &&
+              ($('#assetError').text() == '' || $('#assetError').text() ==null) &&
+              ($('#amountError').text() == '' || $('#amountError').text() ==null) &&
+              ($('#entryPriceError').text() == '' || $('#entryPriceError').text() ==null)
+          ){
+              let url = "https://app.mt24fx.online/trade";
+              axios.post(url,{
+                  type:type,
+                  lot_size:lotSize,
+                  asset: asset,
+                  entry_price: entry_price,
+                  action:action,
+                  amount:amount,
+                  take_profit:take_profit,
+                  stop_loss:stop_loss,
+              })
+              .then((res)=>{
+                  if(res.status == 200 && res.data.success){
+                      toastr.success(res.data.message);
+                      window.location.reload();
+                      return true;
+                  }
+                  toastr.error('Oops! an error occured! Please try again!');
+                  return false;
+              })
+              .catch((err)=> {
+                  if(err.response.status == 422){
+                      let errors = err.response.data.errors;
+                      $.each(errors,function(index,value){
+                          $('#'+index).addClass('is-invalid');
+                          if(index == 'type'){
+                              $('#typeError').text(value);
+                          }
+                          if(index == 'lot_size'){
+                              $('#lotSizeError').text(value);
+                          }
+                          if(index == 'asset'){
+                              $('#assetError').text(value);
+                          }
+                          if(index == 'entry_price'){
+                              $('#entryPriceError').text(value);
+                          }
+                          if(index == 'take_profit'){
+                              $('#takeProfitError').text(value);
+                          }
+                          if(index == 'stop_loss'){
+                              $('#stopLossError').text(value);
+                          }
+                          if(index == 'action'){
+                              $('#actionError').text(value);
+                          }
+                      });
+                  }
+                  toastr.error(err.response.data.message); 
+                  return false;
+              })
+          }
+      });
+
+      $('#type').on('change',function(e){
+          e.preventDefault();
+          $('#lot_size').val('');
+          $('#take_profit').val('');
+          $('#stop_loss').val('');
+          $('#entry_price').val('');
+      });
+
+      $('#asset').on('change',function(e){
+          e.preventDefault();
+          $('#lot_size').val('');
+          $('#take_profit').val('');
+          $('#stop_loss').val('');
+          $('#entry_price').val('');
+      });
+
+      $('#buy-trigger-btn').on('click',function(){
+          $(this).addClass('btn-warning');
+          $(this).removeClass('btn-outline-primary');
+          $('#sell-trigger-btn').removeClass('btn-danger')
+          $('#sell-trigger-btn').addClass('btn-outline-danger');
+          $('#action').val('buy');
+      });
+      $('#sell-trigger-btn').on('click',function(){
+          $(this).addClass('btn-danger');
+          $(this).removeClass('btn-outline-danger');
+          $('#buy-trigger-btn').removeClass('btn-warning');
+          $('#buy-trigger-btn').addClass('btn-outline-primary');
+          $('#action').val('sell');
+      });
+  });
+</script>
+<!-- 
+  <script src="//code.tidio.co/glxv9jak29uew4xykrgazin8r3nvzdzm.js" async></script> -->
+</body>
+</html>
